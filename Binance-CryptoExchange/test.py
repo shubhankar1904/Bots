@@ -1,6 +1,7 @@
 import binance
+import time
 import binanceAPI
-
+import datetime
 '''
 print "Order Book"
 ob = binance.OrderBook().getOrderBook('TRXBTC',5)
@@ -79,8 +80,21 @@ for order in orders:
     
     
 '''
+cdl = binance.CandleSticksList()
+
+cdll=cdl.getCandleSticks(symbol="TRXBTC",interval='5m',limit='500',startTime="0",endTime=str(int((datetime.datetime(2017, 11, 01, 0, 0 ,00)- datetime.datetime(1970, 1, 1)).total_seconds() * 1000)))
+
+for cdls in cdll:
+     
+   
+    print datetime.datetime.fromtimestamp(cdls.get_open_time()/1000).strftime('%Y-%m-%d %H:%M:%S')
+    print datetime.datetime.fromtimestamp(cdls.get_close_time()/1000).strftime('%Y-%m-%d %H:%M:%S')
+    print cdls.get_open()
+'''
 def printFunc(msg):
     print msg
     
 ws = binanceAPI.WebSocketsAPI()
 ws.startTradeSocket("TRXBTC",printFunc)
+ws.run()
+'''
