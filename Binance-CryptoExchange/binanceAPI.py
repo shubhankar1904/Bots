@@ -6,7 +6,7 @@ import datetime
 import pandas
 import ast
 from json2table import convert
-from websocket import create_connection
+#from websocket import create_connection
 #import websocket
 import logging
 import protocols
